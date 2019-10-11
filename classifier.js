@@ -2,7 +2,7 @@
 
 var bayes = require('bayes');
 
-var classifier = bayes();
+const classifier = bayes();
 
 
 //BILD phrases obviously
@@ -42,29 +42,25 @@ classifier.learn('Jannik, jannik, Theinert, theinert', 'Besonders')
 
 //Welt phrases(Not BILD! obviously)
 classifier.learn('Es sind in diesen Tagen politische Gewitterstürme, gegen die sich Trump wappnen muss.', 'Not(Welt)')
-classifier.learn('Im Sonnensystem gibt es mehrere Zonen, in denen sich viele Asteroiden aufhalten.','Not(Welt)')
-classifier.learn('Mit dem Raumschiff „Starship“ und der Rakete „Super Heavy“ hat SpaceX-Chef Elon Musk die geplante nächste Generation seiner Raumfahrzeuge vorgestellt','Not(Welt)')
-classifier.learn('Die neue Chefin des Internationale Währungsfonds zeichnet ein düsteres Bild der Weltwirtschaft.','Not(Welt)')
-classifier.learn('Mit diesem alten Bauerntrick bekam man damals jede herum, und dem Angeber sind vermutlich scharenweise die tollsten Frauen verfallen.','Not(Welt)')
-classifier.learn('Derzeit ist ein Komet auf der Durchreise. 2I/Borisov ist erst das zweite interstellare Objekt, dem Forscher beim Passieren unseres Sonnensystems zusehen können.','Not(Welt)')
-classifier.learn('Wer eine Gehaltserhöhung anstrebt, sollte einkalkulieren, wie viel Budget das Unternehmen dafür hat.','Not(Welt)')
-classifier.learn('Das Beratungsunternehmen Lurse hat bei Firmen aller Branchen die Erhöhungsbudgets für 2020 abgefragt und die Daten zusammengetragen.','Not(Welt)')
-classifier.learn('In den Aufsichtsräten konzentriert sich die wahre Macht über Deutschlands Wirtschaft.','Not(Welt)')
-classifier.learn('Die Deutsche Schutzvereinigung für Wertpapierbesitz (DSW) hat sich sämtliche Aufsichtsräte der Unternehmen im Dax, MDax und SDax angesehen und auf Basis ihrer Analyse eine Rangliste der mächtigsten Firmenaufseher erstellt.','Not(Welt)')
+classifier.learn('Im Sonnensystem gibt es mehrere Zonen, in denen sich viele Asteroiden aufhalten.', 'Not(Welt)')
+classifier.learn('Mit dem Raumschiff „Starship“ und der Rakete „Super Heavy“ hat SpaceX-Chef Elon Musk die geplante nächste Generation seiner Raumfahrzeuge vorgestellt', 'Not(Welt)')
+classifier.learn('Die neue Chefin des Internationale Währungsfonds zeichnet ein düsteres Bild der Weltwirtschaft.', 'Not(Welt)')
+classifier.learn('Mit diesem alten Bauerntrick bekam man damals jede herum, und dem Angeber sind vermutlich scharenweise die tollsten Frauen verfallen.', 'Not(Welt)')
+classifier.learn('Derzeit ist ein Komet auf der Durchreise. 2I/Borisov ist erst das zweite interstellare Objekt, dem Forscher beim Passieren unseres Sonnensystems zusehen können.', 'Not(Welt)')
+classifier.learn('Wer eine Gehaltserhöhung anstrebt, sollte einkalkulieren, wie viel Budget das Unternehmen dafür hat.', 'Not(Welt)')
+classifier.learn('Das Beratungsunternehmen Lurse hat bei Firmen aller Branchen die Erhöhungsbudgets für 2020 abgefragt und die Daten zusammengetragen.', 'Not(Welt)')
+classifier.learn('In den Aufsichtsräten konzentriert sich die wahre Macht über Deutschlands Wirtschaft.', 'Not(Welt)')
+classifier.learn('Die Deutsche Schutzvereinigung für Wertpapierbesitz (DSW) hat sich sämtliche Aufsichtsräte der Unternehmen im Dax, MDax und SDax angesehen und auf Basis ihrer Analyse eine Rangliste der mächtigsten Firmenaufseher erstellt.', 'Not(Welt)')
 classifier.learn('Julian, julian, falck, Falck', 'Julian')
 classifier.learn('Sebastian, sebastian, seb, pasieka, Pasieka', 'Sebastian')
 
-function handleLearn(request, response) {
-    classifier.learn()
-    var stateJson = classifier.toJson()
-}
 
-function handleClassify(request, response){
+
+//categorize the input and send a response with the category to
+function handleClassify(request, response) {
     console.log('classify');
-    classifier = bayes.fromJson(stateJson)
     var category = classifier.categorize(request.body.bild);
-    response.send('It is '+ category) ;
+    response.send('It is ' + category);
 }
 
 this.handle = handleClassify;
-this.learn = handleLearn;

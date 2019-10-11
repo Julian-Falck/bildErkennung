@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <h3>BILDErkennung</h3>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initaial-scale=1">
+    <title>BILDErkennung</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
 </head>
     <body>
 
-    <br>
-    </br>
-    <form autocomplete="off" method = "post" action="/api/classify">
-        <label for="bild">BILD?:
+    <section class="section">
 
-            <input id="bild" name="bild" size="100" >
-            <button type="submit" name="action" value="1" >Check it!
-            </button>
-        </label>
-    </form>
+
+        <div class="container">
+            <h1 class="title">BILDErkennung</h1>
+            <p class="subtitle">
+               Become a bild journalist, test your <strong>text</strong>!
+            </p>
+        </div>
+
+        <br>
+        <form autocomplete="off" method = "post" action="/api/classify">
+            <label for="bild">BILD?:
+
+                <input id="bild" name="bild" size="100" >
+                <button type="submit" name="action" value="1" >
+                    Check it!
+                </button>
+            </label>
+        </form>
+
+
+        </div>
+
+    </section>
     </body>
 </html>
