@@ -17,4 +17,4 @@ install:
   - npm install
 script:
   - npm run ci
-© 2019 GitHub, Inc.
+
